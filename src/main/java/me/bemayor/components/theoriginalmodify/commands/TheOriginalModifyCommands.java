@@ -149,8 +149,8 @@ public class TheOriginalModifyCommands {
                         new SubCommand("rate","加速损耗的倍率的设置",false,null,
                                 new ArrayList<>(Arrays.asList(
                                         new SetIntCommand("nephrite","下界合金质的倍率", config,"multipleDurability.rate.nephrite",
-                                                ()->{return new ArrayList<>(Arrays.asList("0",String.valueOf(multipleDurabilityListener.nephriteRate),"10"));},
-                                                i -> { multipleDurabilityListener.nephriteRate=i; }),
+                                                ()->{return new ArrayList<>(Arrays.asList("0",String.valueOf(multipleDurabilityListener.netheriteRate),"10"));},
+                                                i -> { multipleDurabilityListener.netheriteRate =i; }),
                                         new SetIntCommand("diamond","钻石质的倍率", config,"multipleDurability.rate.diamond",
                                                 ()->{return new ArrayList<>(Arrays.asList("0",String.valueOf(multipleDurabilityListener.diamondRate),"10"));},
                                                 i -> { multipleDurabilityListener.diamondRate=i; }),

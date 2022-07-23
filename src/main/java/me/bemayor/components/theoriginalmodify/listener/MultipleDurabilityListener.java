@@ -10,7 +10,7 @@ import static me.bemayor.components.theoriginalmodify.random.RandomDr.dr;
 
 public class MultipleDurabilityListener implements Listener {
 
-    public int nephriteRate=6;
+    public int netheriteRate =6;
     public int diamondRate=5;
     public int ironRate=3;
     public int goldenRate=1;
@@ -38,7 +38,7 @@ public class MultipleDurabilityListener implements Listener {
             String name = event.getItem().getType().toString();//物品名称
             //根据品阶制定消耗倍率
             if (name.contains("NETHERITE")) {
-                newDamage = nephriteRate * damage;
+                newDamage = netheriteRate * damage;
             } else if (name.contains("DIAMOND")) {
                 newDamage = diamondRate * damage;
             } else if (name.contains("IRON")) {
@@ -87,7 +87,7 @@ public class MultipleDurabilityListener implements Listener {
         try {
             on_off=config.getBoolean("multipleDurability.onOff");
 
-            nephriteRate=config.getInt("multipleDurability.rate.nephrite");
+            netheriteRate =config.getInt("multipleDurability.rate.nephrite");
             diamondRate=config.getInt("multipleDurability.rate.diamond");
             ironRate=config.getInt("multipleDurability.rate.iron");
             goldenRate=config.getInt("multipleDurability.rate.golden");
