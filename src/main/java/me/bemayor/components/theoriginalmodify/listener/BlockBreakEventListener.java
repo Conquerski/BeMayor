@@ -28,7 +28,7 @@ public class BlockBreakEventListener implements Listener {
     public int stoneExpAmount=50;
 
     public int deepslateAppleProbability=400;
-    public int deepslateAppleAmount=1;
+    public int deepslateAppleAmount=10;
 
 
     public boolean on_off=true;
