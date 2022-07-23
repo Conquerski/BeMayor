@@ -232,7 +232,15 @@ public class TheOriginalModifyCommands {
                         ),
                         new SubCommand("rate", "加速损耗的倍率的设置", false, null,
                                 new ArrayList<>(Arrays.asList(
-                                        new SetIntCommand("nephrite", "下界合金质的倍率", config, "multipleDurability.rate.nephrite",
+                                        new SetIntCommand("outfit", "装备的倍率", config, "multipleDurability.rate.outfit",
+                                                () -> {
+                                                    return new ArrayList<>(Arrays.asList("0", String.valueOf(multipleDurabilityListener.outfitRate), "10"));
+                                                },
+                                                i -> {
+                                                    multipleDurabilityListener.outfitRate = i;
+                                                }),
+                                        new SetIntCommand("netherite", "下界合金质的倍率", config, "multipleDurability.rate" +
+                                                ".netherite",
                                                 () -> {
                                                     return new ArrayList<>(Arrays.asList("0", String.valueOf(multipleDurabilityListener.netheriteRate), "10"));
                                                 },

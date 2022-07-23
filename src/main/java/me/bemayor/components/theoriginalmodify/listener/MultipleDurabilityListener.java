@@ -10,6 +10,7 @@ import static me.bemayor.components.theoriginalmodify.random.RandomDr.dr;
 
 public class MultipleDurabilityListener implements Listener {
 
+    public int outfitRate = 2;
     public int netheriteRate = 6;
     public int diamondRate = 5;
     public int ironRate = 3;
@@ -38,7 +39,9 @@ public class MultipleDurabilityListener implements Listener {
             int newDamage = 0;
             String name = event.getItem().getType().toString();//物品名称
             //根据品阶制定消耗倍率
-            if (name.contains("NETHERITE")) {
+            if (name.contains("HELMET")||name.contains("CHESTPLATE")||name.contains("LEGGINGS")||name.contains("BOOTS")){
+                newDamage = outfitRate * damage;
+            } else if (name.contains("NETHERITE")) {
                 newDamage = netheriteRate * damage;
             } else if (name.contains("DIAMOND")) {
                 newDamage = diamondRate * damage;
@@ -88,7 +91,8 @@ public class MultipleDurabilityListener implements Listener {
         try {
             on_off = config.getBoolean("multipleDurability.onOff");
 
-            netheriteRate = config.getInt("multipleDurability.rate.nephrite");
+            outfitRate = config.getInt("multipleDurability.rate.outfit");
+            netheriteRate = config.getInt("multipleDurability.rate.netherite");
             diamondRate = config.getInt("multipleDurability.rate.diamond");
             ironRate = config.getInt("multipleDurability.rate.iron");
             goldenRate = config.getInt("multipleDurability.rate.golden");

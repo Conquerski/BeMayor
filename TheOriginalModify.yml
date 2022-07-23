@@ -14,7 +14,8 @@ blockBreakEvent:
 multipleDurability:
   onOff: true
   rate:
-    nephrite: 6
+    outfit: 2
+    netherite: 6
     diamond: 5
     iron: 3
     golden: 1

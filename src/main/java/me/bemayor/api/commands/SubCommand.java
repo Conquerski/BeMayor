@@ -141,8 +141,9 @@ public class SubCommand {
                         sender.sendMessage(ChatUtils.colorize("&3" + this.getName() + " &b") + this.getDescription());
                     } else {
                         List<String> l = new ArrayList<>();
-                        for (int i = currentIndex + 1; i < args.length; i++)
+                        for (int i = currentIndex + 1; i < args.length; i++) {
                             l.add(args[i]);
+                        }
                         cmdAction.accept(new CommandInputEvent(sender, l));
                     }
                 } else {
