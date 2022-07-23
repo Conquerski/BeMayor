@@ -21,7 +21,7 @@ import org.bukkit.inventory.ItemStack;
  */
 public class BlockBreakEventListener implements Listener {
 
-    public int stoneAppleProbability=400;
+    public int stoneAppleProbability=200;
     public int stoneAppleAmount=1;
 
     public int stoneExpProbability=200;
