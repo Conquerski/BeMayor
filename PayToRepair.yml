@@ -1,0 +1,8 @@
+typeCoe:
+  outfit: 0.8
+  diamond: 1.15
+  nephrite: 1.4
+  other: 1.0
+perCosts:
+  quickFix: 0.03
+  payAnvil: 0.01

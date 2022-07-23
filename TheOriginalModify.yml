@@ -1,0 +1,44 @@
+blockBreakEvent:
+  onOff: true
+  stone:
+    enchantedGoldenApple:
+      probability: 400
+      amount: 1
+    exp:
+      probability: 200
+      amount: 50
+  deepslate:
+    enchantedGoldenApple:
+      probability: 400
+      amount: 1
+multipleDurability:
+  onOff: true
+  rate:
+    nephrite: 6
+    diamond: 5
+    iron: 3
+    golden: 1
+    stone: 2
+    wooden: 1
+    elytra: 1
+    other: 1
+  dr1:
+    probability: 300
+    amount: 30
+  dr2:
+    probability: 300
+    amount: -30
+  dr3:
+    probability: 150
+    amount: 10
+  dr4:
+    probability: 150
+    amount: -10
+  dr5:
+    probability: 200
+    amount: 20
+  dr6:
+    probability: 200
+    amount: -20
+noMending:
+  onOff: true

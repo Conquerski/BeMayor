@@ -1,0 +1,22 @@
+name: BeMayor
+version: '${project.version}'
+main: me.bemayor.BeMayor
+api-version: 1.19
+authors: [ ConquerSki,Manufacturer ]
+description: A plugin used for Miner's Village server!
+softdepend: [Vault,CoreProtect]
+
+# Our commands
+commands:
+  bemayor:
+    aliases: bm
+    description: 老村长BeMayor的主指令
+  xl:
+    description: 快速修理服务指令
+
+# Default permissions
+permissions:
+  bemayor.command.bemayor:
+    description: 使用BeMayor指令的权限
+    default: op
+    permission-message: "咱只能说忘记给你权限了！"
