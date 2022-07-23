@@ -202,14 +202,16 @@ public class SubCommand {
                 //不存在下级指令且存在后续指令
                 if (hasTabFind()) {
                     List<String> l = new ArrayList<>();
-                    for (int i = currentIndex; i < args.length; i++)
+                    for (int i = currentIndex; i < args.length; i++){
                         l.add(args[i]);
+                    }
                     return cmdTab.apply(new CommandInputEvent(sender, l));
                 } else {
-                    if (len == currentIndex)
+                    if (len == currentIndex) {
                         return ChatUtils.helpListForTab;
-                    else
+                    } else {
                         return ChatUtils.nullListForTab;
+                    }
                 }
             }
         } else {

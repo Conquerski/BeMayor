@@ -21,9 +21,7 @@ public class SetCommand extends SubCommand {
                 String s = texts.get(0);
                 try {
                     if (newMatches == null || !newMatches.apply(s)) {
-                        if (e.getCommandSender() instanceof Player) {
-                            ((Player) e.getCommandSender()).sendMessage("§c输入的值格式不对！");
-                        }
+                            e.getCommandSender().sendMessage("§c输入的值格式不对！");
                         return;
                     }
                     if (newAction != null) {
@@ -35,7 +33,7 @@ public class SetCommand extends SubCommand {
                     }
                 } catch (Exception x) {
                     String errorText = description + "的值设置指令的动作或者" + config.getFile().getName() + "中的" + path + "有错误！具体信息：" + x;
-                    if (e.getCommandSender() instanceof Player) ((Player) e.getCommandSender()).sendMessage(errorText);
+                    e.getCommandSender().sendMessage(errorText);
                     System.out.println(errorText);
                 }
             }

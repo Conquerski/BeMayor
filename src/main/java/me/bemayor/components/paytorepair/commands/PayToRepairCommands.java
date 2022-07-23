@@ -1,22 +1,17 @@
 package me.bemayor.components.paytorepair.commands;
 
 import io.github.bakedlibs.dough.items.ItemUtils;
-import me.bemayor.api.commands.CommandInputEvent;
 import me.bemayor.api.commands.PlayerCommand;
 import me.bemayor.api.commands.SubCommand;
 import me.bemayor.api.commands.subcommands.GiveCommand;
 import me.bemayor.api.commands.subcommands.setcommand.SetDoubleCommand;
-import me.bemayor.api.commands.subcommands.setcommand.SetIntCommand;
 import me.bemayor.api.common.ItemMetaBuilder;
 import me.bemayor.components.ComponentManagement;
 import me.bemayor.components.paytorepair.CalCostsResult;
 import me.bemayor.components.paytorepair.PayToRepair;
 import me.bemayor.components.paytorepair.PayToRepairUsage;
-import me.bemayor.components.paytorepair.items.PayAnvilGui;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.Damageable;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -51,12 +46,12 @@ public class PayToRepairCommands {
                                                 i -> {
                                                     upper.usage.typeCoeDiamond = i;
                                                 }),
-                                        new SetDoubleCommand("nephrite", "下界合金质的权重", upper.config, "typeCoe.nephrite",
+                                        new SetDoubleCommand("netherite", "下界合金质的权重", upper.config, "typeCoe.netherite",
                                                 () -> {
-                                                    return new ArrayList<>(Arrays.asList("0.0", String.valueOf(upper.usage.typeCoeNephrite), "10.0"));
+                                                    return new ArrayList<>(Arrays.asList("0.0", String.valueOf(upper.usage.typeCoeNetherite), "10.0"));
                                                 },
                                                 i -> {
-                                                    upper.usage.typeCoeNephrite = i;
+                                                    upper.usage.typeCoeNetherite = i;
                                                 }),
                                         new SetDoubleCommand("other", "其他材质的权重", upper.config, "typeCoe.other",
                                                 () -> {

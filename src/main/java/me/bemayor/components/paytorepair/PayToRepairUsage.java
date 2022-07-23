@@ -17,9 +17,8 @@ public class PayToRepairUsage {
 
     public double typeCoeOutfit = 0.8;
     public double typeCoeDiamond = 1.15;
-    public double typeCoeNephrite = 1.4;
+    public double typeCoeNetherite = 1.4;
     public double typeCoeOther = 1.0;
-
     public double perCostsQuickFix = 0.03;
     public double perCostsPayAnvil = 0.01;
 
@@ -34,7 +33,7 @@ public class PayToRepairUsage {
         try {
             typeCoeOutfit = config.getDouble("typeCoe.outfit");
             typeCoeDiamond = config.getDouble("typeCoe.diamond");
-            typeCoeNephrite = config.getDouble("typeCoe.nephrite");
+            typeCoeNetherite = config.getDouble("typeCoe.nephrite");
             typeCoeOther = config.getDouble("typeCoe.other");
 
             perCostsQuickFix = config.getDouble("perCosts.quickFix");
@@ -91,7 +90,7 @@ public class PayToRepairUsage {
         } else if (type.contains("DIAMOND")) {
             typeCoe = typeCoeDiamond;
         } else if (type.contains("NETHERITE")) {
-            typeCoe = typeCoeNephrite;
+            typeCoe = typeCoeNetherite;
         } else {
             typeCoe = typeCoeOther;
         }

@@ -3,7 +3,6 @@ package me.bemayor.api.commands;
 import me.bemayor.api.ApiManagement;
 import me.bemayor.api.ApiMember;
 import me.bemayor.api.ChatMessages;
-
 import me.bemayor.api.common.ChatUtils;
 import org.apache.commons.lang.Validate;
 import org.bukkit.command.Command;
@@ -13,7 +12,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainCommand extends ApiMember implements CommandExecutor, Listener {
 
@@ -74,13 +74,13 @@ public class MainCommand extends ApiMember implements CommandExecutor, Listener 
         Validate.isTrue(!registered, "当前插件的指令集已经过注册了，不要重复注册!");
         registered = true;
 
-        apiManager.getPlugin().getServer().getPluginManager().registerEvents(this, apiManager.getPlugin());
-        apiManager.getPlugin().getCommand(name).setExecutor(this);
-        apiManager.getPlugin().getCommand(name).setTabCompleter(new AllTabCompleter(this));
+        ApiManagement.getPlugin().getServer().getPluginManager().registerEvents(this, ApiManagement.getPlugin());
+        ApiManagement.getPlugin().getCommand(name).setExecutor(this);
+        ApiManagement.getPlugin().getCommand(name).setTabCompleter(new AllTabCompleter(this));
 
         if (playerCommands != null && !playerCommands.isEmpty()) {
             for (PlayerCommand pCmd : playerCommands) {
-                apiManager.getPlugin().getCommand(pCmd.getName()).setExecutor(pCmd);
+                ApiManagement.getPlugin().getCommand(pCmd.getName()).setExecutor(pCmd);
             }
         }
     }
