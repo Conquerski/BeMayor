@@ -17,24 +17,24 @@ import java.util.function.Consumer;
 /**
  * This utility class contains a few static methods that are all about {@link String} manipulation
  * or sending a {@link String} to a {@link Player}.
- * 
- * @author TheBusyBiscuit
  *
+ * @author TheBusyBiscuit
  */
 public final class ChatUtils {
 
-    public static List<String> amountListForTab= new ArrayList<>(Arrays.asList("1","2","4","8","16","32","48","64"));
-    public static List<String> onOffListForTab= new ArrayList<>(Arrays.asList("true","false"));
-    public static List<String> helpListForTab= new ArrayList<>(Arrays.asList("help"));
-    public static List<String> nullListForTab= new ArrayList<>();
+    public static List<String> amountListForTab = new ArrayList<>(Arrays.asList("1", "2", "4", "8", "16", "32", "48", "64"));
+    public static List<String> onOffListForTab = new ArrayList<>(Arrays.asList("true", "false"));
+    public static List<String> helpListForTab = new ArrayList<>(Arrays.asList("help"));
+    public static List<String> nullListForTab = new ArrayList<>();
 
-    private ChatUtils() {}
+    private ChatUtils() {
+    }
 
-    public static String colorize(String str){
-        if(str==null){
+    public static String colorize(String str) {
+        if (str == null) {
             return null;
         }
-        return str.replace("&","§");
+        return str.replace("&", "§");
     }
 
     public static String removeColorCodes(String string) {
@@ -61,13 +61,11 @@ public final class ChatUtils {
      * This converts a given {@link String} to a human-friendly version.
      * This can be used to convert enum constants to easier to read words with
      * spaces and upper case word starts.
-     * 
+     * <p>
      * For example:
      * {@code ENUM_CONSTANT: Enum Constant}
-     * 
-     * @param string
-     *            The {@link String} to convert
-     * 
+     *
+     * @param string The {@link String} to convert
      * @return A human-friendly version of the given {@link String}
      */
     public static String humanize(String string) {

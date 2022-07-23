@@ -16,14 +16,15 @@ import java.util.*;
 
 public class ItemStackUtils {
 
-    public static boolean isExistence(ItemStack itemStack){
-        if (itemStack== null || itemStack.getType() == Material.AIR || itemStack.getAmount() == 0) {
+    public static boolean isExistence(ItemStack itemStack) {
+        if (itemStack == null || itemStack.getType() == Material.AIR || itemStack.getAmount() == 0) {
             return false;
         }
         return true;
     }
-    public static boolean isExistence(Block block){
-        if (block==null || block.isEmpty() || block.getType()==Material.AIR) {
+
+    public static boolean isExistence(Block block) {
+        if (block == null || block.isEmpty() || block.getType() == Material.AIR) {
             return false;
         }
         return true;
@@ -39,22 +40,23 @@ public class ItemStackUtils {
         return ItemUtils.getItemName(itemStack);
     }
 
-    public static void putItemToPlayer(Player player, ItemStack itemStack){
-        if(itemStack!=null && player!=null){
+    public static void putItemToPlayer(Player player, ItemStack itemStack) {
+        if (itemStack != null && player != null) {
             Map<Integer, ItemStack> excess = player.getInventory().addItem(itemStack);
             if (!excess.isEmpty()) {
                 for (ItemStack is : excess.values()) {
                     player.getWorld().dropItem(player.getLocation(), is);
-                    player.sendMessage("§6背包太满了，你的"+ ItemUtils.getItemName(is)+"掉地上了！");
+                    player.sendMessage("§6背包太满了，你的" + ItemUtils.getItemName(is) + "掉地上了！");
                 }
             }
         }
     }
 
-    public static  ItemStack getSkull(String id,  String texture) {
+    public static ItemStack getSkull(String id, String texture) {
         PlayerSkin skin = PlayerSkin.fromBase64(getTexture(id, texture));
         return PlayerHead.getItemStack(skin);
     }
+
     public static String getTexture(String id, String texture) {
         Validate.notNull(id, "The id cannot be null");
         Validate.notNull(texture, "The texture cannot be null");

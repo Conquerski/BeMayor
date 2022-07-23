@@ -17,14 +17,14 @@ public class PortableCrafter extends CustomItemStack {
                 "&a&o一个便于使用的工作台", "", LoreBuilder.RIGHT_CLICK_TO_OPEN);
         this.setPlaceable(false);
 
-        this.setUseAction(event->{
+        this.setUseAction(event -> {
             Player p = event.getPlayer();
             p.openWorkbench(p.getLocation(), true);
             p.getWorld().playSound(p.getLocation(), Sound.BLOCK_WOODEN_BUTTON_CLICK_ON, 1, 1);
         });
 
         this.setRecipe(new ShapedRecipe(this.getCloneItemStack())
-                .shape("xyz","yay","zyx")
+                .shape("xyz", "yay", "zyx")
                 .setIngredient('x', Material.DIAMOND)
                 .setIngredient('y', Material.LEATHER)
                 .setIngredient('z', Material.END_CRYSTAL)

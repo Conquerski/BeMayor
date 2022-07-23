@@ -13,19 +13,19 @@ import org.bukkit.event.player.PlayerItemMendEvent;
 
 public class NoMendingListener implements Listener {
 
-    public boolean on_off=true;
+    public boolean on_off = true;
 
     @EventHandler
-    public void noMending(PlayerItemMendEvent e){
-        if(on_off) {
+    public void noMending(PlayerItemMendEvent e) {
+        if (on_off) {
             e.setCancelled(true);
             //String a = e.getPlayer().getName();
         }
     }
 
-    public void setupConfigData(Config config){
+    public void setupConfigData(Config config) {
         try {
-            on_off=config.getBoolean("noMending.onOff");
+            on_off = config.getBoolean("noMending.onOff");
         } catch (Exception x) {
             System.out.println("配置文件" + config.getFile().getName() + "中的NoMending有错误！具体信息：" + x);
         }

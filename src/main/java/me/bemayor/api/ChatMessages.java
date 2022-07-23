@@ -14,26 +14,29 @@ import java.util.function.UnaryOperator;
 
 public class ChatMessages extends Config {
 
-    public ChatMessages(JavaPlugin plugin) { super(plugin, ApiManagement.MESSAGES_YML); }
+    public ChatMessages(JavaPlugin plugin) {
+        super(plugin, ApiManagement.MESSAGES_YML);
+    }
 
     public String getChatPrefix() {
         return getMessage("chat.prefix");
     }
+
     public String getMessage(String key) {
         return getString(key);
     }
+
     public String getMessage(Player p, String key) {
         Validate.notNull(p, "Player must not be null!");
         Validate.notNull(key, "Message key must not be null!");
-        String str="回复"+p.getPlayer().getDisplayName()+":&b"+getMessage(key);
+        String str = "回复" + p.getPlayer().getDisplayName() + ":&b" + getMessage(key);
         return str;
     }
 
     /**
      * Returns the Strings referring to the specified Key
      *
-     * @param key
-     *            The Key of those Messages
+     * @param key The Key of those Messages
      * @return The List this key is referring to
      */
 
@@ -64,9 +67,11 @@ public class ChatMessages extends Config {
             recipient.sendMessage(ChatColor.stripColor(ChatUtils.colorize(prefix + getMessage(key))));
         }
     }
-    public void sendMessage(CommandSender recipient,String key) {
+
+    public void sendMessage(CommandSender recipient, String key) {
         sendMessage(recipient, key, true);
     }
+
     public void sendMessage(CommandSender recipient, String key, UnaryOperator<String> function) {
         sendMessage(recipient, key, true, function);
     }

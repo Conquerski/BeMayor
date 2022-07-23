@@ -9,9 +9,7 @@ import java.util.Locale;
  * {@link SlimefunItemStack}. It is mostly used directly inside the class {@link SlimefunItems}.
  *
  * @author TheBusyBiscuit
- *
  * @see SlimefunItems
- *
  */
 public final class LoreBuilder {
 
@@ -23,7 +21,8 @@ public final class LoreBuilder {
 
     private static final DecimalFormat hungerFormat = new DecimalFormat("#.0", DecimalFormatSymbols.getInstance(Locale.ROOT));
 
-    private LoreBuilder() {}
+    private LoreBuilder() {
+    }
 
     public static String speed(float speed) {
         return "&8\u21E8 &b\u26A1 &7速度值: &b" + speed + 'x';

@@ -13,21 +13,21 @@ public class TransportCore extends CustomItemStack {
         super("TRANSPORT_CORE",
                 HeadTexture.FANCY_CUBE.getTexture(),
                 "&6跃迁核心",
-                "&a&o标记所在信标位置为所属卷轴跃迁目的地", "&f用来合成跃迁卷轴","", "&e放置在激活信标的光柱内&7进行使用");
+                "&a&o标记所在信标位置为所属卷轴跃迁目的地", "&f用来合成跃迁卷轴", "", "&e放置在激活信标的光柱内&7进行使用");
 
-        this.setUseAction(event->{
+        this.setUseAction(event -> {
             Player p = event.getPlayer();
-            Location l=event.getClickedBlock().getLocation();
-            Location destination=TransitionUsage.getDestination(p,l);
-            if(destination!=null){
+            Location l = event.getClickedBlock().getLocation();
+            Location destination = TransitionUsage.getDestination(p, l);
+            if (destination != null) {
                 usage.addDestination(destination);
-                openTransportCore(p,destination);
+                openTransportCore(p, destination);
                 p.playSound(p.getEyeLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 1F, 0.6F);
             }
         });
 
         this.setRecipe(new ShapedRecipe(this.getCloneItemStack())
-                .shape("axa","byb","zcz")
+                .shape("axa", "byb", "zcz")
                 .setIngredient('x', Material.BEACON)
                 .setIngredient('y', Material.CONDUIT)
                 .setIngredient('z', Material.END_CRYSTAL)
@@ -38,8 +38,8 @@ public class TransportCore extends CustomItemStack {
 
     }
 
-    public void openTransportCore(Player player, Location destination){
+    public void openTransportCore(Player player, Location destination) {
         TransportCoreGui tcGui = new TransportCoreGui();
-        tcGui.open(player,destination);
+        tcGui.open(player, destination);
     }
 }

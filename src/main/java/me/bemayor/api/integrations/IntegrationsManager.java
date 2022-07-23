@@ -18,7 +18,7 @@ import java.util.function.Consumer;
 
 public class IntegrationsManager extends ApiMember {
 
-    protected final JavaPlugin plugin=ApiManagement.getPlugin();
+    protected final JavaPlugin plugin = ApiManagement.getPlugin();
 
     /**
      * Our {@link ProtectionManager} instance.
@@ -39,11 +39,13 @@ public class IntegrationsManager extends ApiMember {
     private boolean isOrebfuscatorInstalled = false;
     private boolean isNBTAPIInstalled = false;
 
-    public IntegrationsManager(ApiManagement apiManagement) { super(apiManagement); }
+    public IntegrationsManager(ApiManagement apiManagement) {
+        super(apiManagement);
+    }
 
     /**
      * This method returns whether the {@link IntegrationsManager} was enabled yet.
-     * 
+     *
      * @return Whether this {@link IntegrationsManager} has been enabled already.
      */
     public boolean isEnabled() {
@@ -84,7 +86,7 @@ public class IntegrationsManager extends ApiMember {
 
         // mcMMO Integration
         load("mcMMO", integration -> {
-            new McMMOIntegration(plugin,apiManager).register();
+            new McMMOIntegration(plugin, apiManager).register();
             isMcMMOInstalled = true;
         });
 
@@ -109,7 +111,7 @@ public class IntegrationsManager extends ApiMember {
             // Load Protection plugin integrations
             protectionManager = new ProtectionManager(plugin);
         } catch (Exception | LinkageError x) {
-            System.out.println("Failed to load Protection plugin integrations:"+x);
+            System.out.println("Failed to load Protection plugin integrations:" + x);
         }
     }
 
@@ -118,18 +120,16 @@ public class IntegrationsManager extends ApiMember {
      * we integrate into.
      * Calling this method will probably log the error and provide the version of this {@link Plugin}
      * for error analysis.
-     * 
-     * @param name
-     *            The name of the {@link Plugin}
-     * @param throwable
-     *            The {@link Throwable} to throw
+     *
+     * @param name      The name of the {@link Plugin}
+     * @param throwable The {@link Throwable} to throw
      */
     protected void logError(String name, Throwable throwable) {
         Plugin externalPlugin = Bukkit.getPluginManager().getPlugin(name);
 
         if (externalPlugin != null) {
             String version = externalPlugin.getDescription().getVersion();
-            System.out.println("Is {0} v{1} up to date?"+"name:"+name + " version:" + version);
+            System.out.println("Is {0} v{1} up to date?" + "name:" + name + " version:" + version);
             System.out.println("An unknown error was detected while interacting with \"" + name + " v" + version + "\"");
         } else {
             System.out.println("An unknown error was detected while interacting with the plugin \"" + name + "\"");
@@ -139,24 +139,22 @@ public class IntegrationsManager extends ApiMember {
     /**
      * This method loads an integration with a {@link Plugin} of the specified name.
      * If that {@link Plugin} is installed and enabled, the provided callback will be run.
-     * 
-     * @param pluginName
-     *            The name of this {@link Plugin}
-     * @param consumer
-     *            The callback to run if that {@link Plugin} is installed and enabled
+     *
+     * @param pluginName The name of this {@link Plugin}
+     * @param consumer   The callback to run if that {@link Plugin} is installed and enabled
      */
     private void load(String pluginName, Consumer<Plugin> consumer) {
         Plugin integration = plugin.getServer().getPluginManager().getPlugin(pluginName);
 
         if (integration != null && integration.isEnabled()) {
             String version = integration.getDescription().getVersion();
-            System.out.println("Hooked into Plugin: {0} v{1}\n"+"pluginName"+ pluginName + " version:" + version);
+            System.out.println("Hooked into Plugin: {0} v{1}\n" + "pluginName" + pluginName + " version:" + version);
 
             try {
                 // Run our callback
                 consumer.accept(integration);
             } catch (Exception | LinkageError x) {
-                System.out.println("Maybe consider updating {0} or Slimefun?\n"+"pluginName"+ pluginName);
+                System.out.println("Maybe consider updating {0} or Slimefun?\n" + "pluginName" + pluginName);
                 System.out.println("Failed to hook into " + pluginName + " v" + version);
             }
         }
@@ -165,7 +163,7 @@ public class IntegrationsManager extends ApiMember {
     /**
      * This returns out instance of the {@link ProtectionManager}.
      * This bridge is used to hook into any third-party protection {@link Plugin}.
-     * 
+     *
      * @return Our instanceof of the {@link ProtectionManager}
      */
     public ProtectionManager getProtectionManager() {
@@ -175,10 +173,8 @@ public class IntegrationsManager extends ApiMember {
     /**
      * This checks if one of our third party integrations faked an {@link Event}.
      * Faked {@link Event Events} should be ignored in our logic.
-     * 
-     * @param event
-     *            The {@link Event} to test
-     * 
+     *
+     * @param event The {@link Event} to test
      * @return Whether this is a fake event
      */
     public boolean isEventFaked(Event event) {
@@ -189,10 +185,8 @@ public class IntegrationsManager extends ApiMember {
     /**
      * This checks if one of our third party integrations has placed a custom
      * {@link Block} at this {@link Location}.
-     * 
-     * @param block
-     *            The {@link Block} to check
-     * 
+     *
+     * @param block The {@link Block} to check
      * @return Whether a different custom {@link Block} exists at that {@link Location}
      */
     @SuppressWarnings("deprecation")
@@ -210,10 +204,8 @@ public class IntegrationsManager extends ApiMember {
     /**
      * This checks if one of our third party integrations defines a given
      * {@link ItemStack} as custom.
-     * 
-     * @param item
-     *            The {@link ItemStack} to check
-     * 
+     *
+     * @param item The {@link ItemStack} to check
      * @return Whether this {@link ItemStack} is a custom item
      */
     @SuppressWarnings("deprecation")
@@ -253,6 +245,7 @@ public class IntegrationsManager extends ApiMember {
     public boolean isOrebfuscatorInstalled() {
         return isOrebfuscatorInstalled;
     }
+
     public boolean isNBTAPIInstalled() {
         return isNBTAPIInstalled;
     }

@@ -13,9 +13,8 @@ import java.util.UUID;
 /**
  * This enum holds all currently used Head textures in Slimefun.
  * Credit for most of these goes to our main head designer "AquaLazuryt".
- * 
- * @author TheBusyBiscuit
  *
+ * @author TheBusyBiscuit
  */
 public enum HeadTexture {
 
@@ -33,7 +32,7 @@ public enum HeadTexture {
 
     /**
      * This returns the texture hash for this particular head.
-     * 
+     *
      * @return The associated texture hash
      */
     public String getTexture() {

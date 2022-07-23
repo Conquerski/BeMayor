@@ -20,36 +20,55 @@ public class MainCommand extends ApiMember implements CommandExecutor, Listener 
     private boolean registered = false;
 
     private final String name;
-    private final List<SubCommand> subCommands=new ArrayList<>();
-    private final List<PlayerCommand> playerCommands=new ArrayList<>();
+    private final List<SubCommand> subCommands = new ArrayList<>();
+    private final List<PlayerCommand> playerCommands = new ArrayList<>();
 
-    public MainCommand(ApiManagement apiManagement,String name) {
+    public MainCommand(ApiManagement apiManagement, String name) {
         super(apiManagement);
-        this.name=name;
+        this.name = name;
     }
-    public List<SubCommand> getSubCommands() { return subCommands; }
-    public void addSubCommand(SubCommand command){ subCommands.add(command); }
-    public boolean removeSubCommand(int index){
-        if(index>=0 && subCommands.size()>index){
+
+    public List<SubCommand> getSubCommands() {
+        return subCommands;
+    }
+
+    public void addSubCommand(SubCommand command) {
+        subCommands.add(command);
+    }
+
+    public boolean removeSubCommand(int index) {
+        if (index >= 0 && subCommands.size() > index) {
             subCommands.remove(index);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public void clearSubCommands(){ subCommands.clear(); }
 
-    public List<PlayerCommand> getPlayerCommands() { return playerCommands; }
-    public void addPlayerCommand(PlayerCommand command){ playerCommands.add(command); }
-    public boolean removePlayerCommand(int index){
-        if(index>=0 && playerCommands.size()>index){
+    public void clearSubCommands() {
+        subCommands.clear();
+    }
+
+    public List<PlayerCommand> getPlayerCommands() {
+        return playerCommands;
+    }
+
+    public void addPlayerCommand(PlayerCommand command) {
+        playerCommands.add(command);
+    }
+
+    public boolean removePlayerCommand(int index) {
+        if (index >= 0 && playerCommands.size() > index) {
             playerCommands.remove(index);
             return true;
-        }else{
+        } else {
             return false;
         }
     }
-    public void clearPlayerCommands(){ playerCommands.clear(); }
+
+    public void clearPlayerCommands() {
+        playerCommands.clear();
+    }
 
     public void register() {
         Validate.isTrue(!registered, "当前插件的指令集已经过注册了，不要重复注册!");
@@ -59,8 +78,8 @@ public class MainCommand extends ApiMember implements CommandExecutor, Listener 
         apiManager.getPlugin().getCommand(name).setExecutor(this);
         apiManager.getPlugin().getCommand(name).setTabCompleter(new AllTabCompleter(this));
 
-        if(playerCommands!=null && !playerCommands.isEmpty()){
-            for(PlayerCommand pCmd:playerCommands){
+        if (playerCommands != null && !playerCommands.isEmpty()) {
+            for (PlayerCommand pCmd : playerCommands) {
                 apiManager.getPlugin().getCommand(pCmd.getName()).setExecutor(pCmd);
             }
         }
@@ -69,21 +88,21 @@ public class MainCommand extends ApiMember implements CommandExecutor, Listener 
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(sender.hasPermission("bemayor.command.bemayor")) {
+        if (sender.hasPermission("bemayor.command.bemayor")) {
             if (!subCommands.isEmpty() && args.length > 0) {
                 if (args[0].equalsIgnoreCase("help")) {
                     sendHelp(sender);
-                }else{
+                } else {
                     for (SubCommand command : subCommands) {
                         if (args[0].equalsIgnoreCase(command.getName())) {
-                            command.onExecute(sender, args,0);
+                            command.onExecute(sender, args, 0);
                             sender.sendMessage(ChatUtils.colorize("&a老村长-BeMayor &2v1.0" + "  &b指令已执行完毕。"));
                             return true;
                         }
                     }
                 }
-            }else {
-                apiManager.getChatMessages().sendMessage(sender, "chat.no-command",true);
+            } else {
+                apiManager.getChatMessages().sendMessage(sender, "chat.no-command", true);
             }
 
             /*
@@ -93,8 +112,8 @@ public class MainCommand extends ApiMember implements CommandExecutor, Listener 
              * this always returning true...
              */
             return !subCommands.isEmpty();
-        }else
-            apiManager.getChatMessages().sendMessage(sender, "chat.no-permission",true);
+        } else
+            apiManager.getChatMessages().sendMessage(sender, "chat.no-permission", true);
         return false;
     }
 

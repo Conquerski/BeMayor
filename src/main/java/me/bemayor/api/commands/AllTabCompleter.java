@@ -17,31 +17,31 @@ class AllTabCompleter implements TabCompleter {
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
-        if(args.length > 0){
-            List<SubCommand> commands=mainCmd.getSubCommands();
-            if (!commands.isEmpty()){
-                if(args.length > 1){
-                    SubCommand command=null;
+        if (args.length > 0) {
+            List<SubCommand> commands = mainCmd.getSubCommands();
+            if (!commands.isEmpty()) {
+                if (args.length > 1) {
+                    SubCommand command = null;
                     for (SubCommand scmd : commands) {
                         if (args[0].equalsIgnoreCase(scmd.getName())) {
-                            command=scmd;
+                            command = scmd;
                             break;
                         }
                     }
-                    if(command==null){
+                    if (command == null) {
                         return ChatUtils.nullListForTab;
-                    }else{
-                        return command.onTabFind(sender, args,0);
+                    } else {
+                        return command.onTabFind(sender, args, 0);
                     }
-                }else{
-                    List l=new ArrayList();
+                } else {
+                    List l = new ArrayList();
                     l.add("help");
                     for (SubCommand command : commands) {
                         l.add(command.getName());
                     }
                     return l;
                 }
-            }else{
+            } else {
                 return ChatUtils.helpListForTab;
             }
         }

@@ -23,7 +23,7 @@ public class PortablePayAnvil extends CustomItemStack {
 
         this.setPlaceable(false);
 
-        this.setUseAction(event->{
+        this.setUseAction(event -> {
             upper.openPayAnvil(event.getPlayer());
         });
     }

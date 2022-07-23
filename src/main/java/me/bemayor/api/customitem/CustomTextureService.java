@@ -22,7 +22,6 @@ import java.util.Collection;
  * We simply use {@link ItemMeta#setCustomModelData(Integer)} for this.
  *
  * @author TheBusyBiscuit
- *
  */
 public class CustomTextureService {
 
@@ -47,8 +46,7 @@ public class CustomTextureService {
     /**
      * This creates a new {@link CustomTextureService} for the provided {@link Config}
      *
-     * @param config
-     *            The {@link Config} to read custom model data from
+     * @param config The {@link Config} to read custom model data from
      */
     public CustomTextureService(Config config) {
         this.config = config;
@@ -60,10 +58,8 @@ public class CustomTextureService {
      * This method registers the given {@link SlimefunItem SlimefunItems} to this {@link CustomTextureService}.
      * If saving is enabled, it will save them to the {@link Config} file.
      *
-     * @param items
-     *            The {@link SlimefunItem SlimefunItems} to register
-     * @param save
-     *            Whether to save this file
+     * @param items The {@link SlimefunItem SlimefunItems} to register
+     * @param save  Whether to save this file
      */
     /*
     public void register(Collection<CustomItemStack> items, boolean save) {
@@ -119,9 +115,7 @@ public class CustomTextureService {
     /**
      * This returns the configured custom model data for a given id.
      *
-     * @param id
-     *            The id to get the data for
-     *
+     * @param id The id to get the data for
      * @return The configured custom model data
      */
     public int getModelData(String id) {
@@ -134,10 +128,8 @@ public class CustomTextureService {
      * This method sets the custom model data for this {@link ItemStack}
      * to the value configured for the provided item id.
      *
-     * @param item
-     *            The {@link ItemStack} to set the custom model data for
-     * @param id
-     *            The id for which to get the configured model data
+     * @param item The {@link ItemStack} to set the custom model data for
+     * @param id   The id for which to get the configured model data
      */
     public void setTexture(ItemStack item, String id) {
         Validate.notNull(item, "The Item cannot be null!");
@@ -152,10 +144,8 @@ public class CustomTextureService {
      * This method sets the custom model data for this {@link ItemMeta}
      * to the value configured for the provided item id.
      *
-     * @param im
-     *            The {@link ItemMeta} to set the custom model data for
-     * @param id
-     *            The id for which to get the configured model data
+     * @param im The {@link ItemMeta} to set the custom model data for
+     * @param id The id for which to get the configured model data
      */
     public void setTexture(ItemMeta im, String id) {
         Validate.notNull(im, "The ItemMeta cannot be null!");

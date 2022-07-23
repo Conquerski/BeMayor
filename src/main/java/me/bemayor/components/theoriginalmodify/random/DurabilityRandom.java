@@ -14,7 +14,6 @@ public class DurabilityRandom {
      * @param probability      "设置概率，此参数传递的是分母，概率为1/分母"
      * @param durabilityAmount "设置事件中影响的耐久度数值，正为加，负为减"
      * @param event            "传递触发事件"
-     *
      * @author ConquerSki
      */
     public void durabilityRandom(Integer probability, Integer durabilityAmount, PlayerItemDamageEvent event) {

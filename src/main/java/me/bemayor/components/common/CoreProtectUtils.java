@@ -9,12 +9,13 @@ import static org.bukkit.Bukkit.getServer;
 public class CoreProtectUtils {
     public static CoreProtectAPI api;
 
-    public static void setupCoreProtect(){
+    public static void setupCoreProtect() {
         api = getCoreProtect();
-        if (api != null){ // Ensure we have access to the API
+        if (api != null) { // Ensure we have access to the API
             api.testAPI(); // Will print out "[CoreProtect] API test successful." in the console.
         }
     }
+
     private static CoreProtectAPI getCoreProtect() {
         Plugin plugin = getServer().getPluginManager().getPlugin("CoreProtect");
         // Check that CoreProtect is loaded

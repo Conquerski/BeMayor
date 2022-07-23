@@ -30,7 +30,7 @@ public class PayAnvil extends CustomItemStack {
         super("PAY_ANVIL",
                 HeadTexture.PIRATE_RELIC.getTexture(),
                 "&6修理台",
-                "&a&o花费金币来修理工具、武器、装备","", "&e放置在地上&7进行使用");
+                "&a&o花费金币来修理工具、武器、装备", "", "&e放置在地上&7进行使用");
         /*
         如果需要更改才用到这两句
         this.setPlaceable(true);//设置可否放置
@@ -38,7 +38,7 @@ public class PayAnvil extends CustomItemStack {
          */
 
         //编写该CustomItemStack的使用动作
-        this.setUseAction(event->{
+        this.setUseAction(event -> {
             upper.openPayAnvil(event.getPlayer());
         });
 

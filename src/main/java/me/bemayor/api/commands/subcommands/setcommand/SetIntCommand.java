@@ -9,12 +9,12 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class SetIntCommand extends SetCommand {
-    public SetIntCommand(String vaultName, String description, Config config, String path, Supplier<List<String>> listForTab, Consumer<Integer> newAction){
+    public SetIntCommand(String vaultName, String description, Config config, String path, Supplier<List<String>> listForTab, Consumer<Integer> newAction) {
         super(vaultName, description, config, path, listForTab,
                 s -> {
                     return CommonPatterns.ZEROINTEGER.matcher(s).matches() || CommonPatterns.POSITIVEINTEGER.matcher(s).matches() || CommonPatterns.NEGATIVEINTEGER.matcher(s).matches();
                 },
-                e ->{
+                e -> {
                     newAction.accept(Integer.parseInt(e.getTexts().get(0)));
                 },
                 e -> {
@@ -22,7 +22,8 @@ public class SetIntCommand extends SetCommand {
                 }
         );
     }
-    public SetIntCommand(String vaultName, String description, Supplier<List<String>> listForTab, Consumer<Integer> newAction){
-        this(vaultName,description,null,"",listForTab,newAction);
+
+    public SetIntCommand(String vaultName, String description, Supplier<List<String>> listForTab, Consumer<Integer> newAction) {
+        this(vaultName, description, null, "", listForTab, newAction);
     }
 }

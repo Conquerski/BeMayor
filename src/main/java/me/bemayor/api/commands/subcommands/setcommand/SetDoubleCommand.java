@@ -10,12 +10,12 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class SetDoubleCommand extends SetCommand {
-    public SetDoubleCommand(String vaultName, String description, Config config, String path, Supplier<List<String>> listForTab, Consumer<Double> newAction){
+    public SetDoubleCommand(String vaultName, String description, Config config, String path, Supplier<List<String>> listForTab, Consumer<Double> newAction) {
         super(vaultName, description, config, path, listForTab,
                 s -> {
                     return CommonPatterns.DECIMAL.matcher(s).matches();
                 },
-                e ->{
+                e -> {
                     newAction.accept(Double.valueOf(e.getTexts().get(0)));
                 },
                 e -> {
@@ -23,7 +23,8 @@ public class SetDoubleCommand extends SetCommand {
                 }
         );
     }
-    public SetDoubleCommand(String vaultName, String description, Supplier<List<String>> listForTab, Consumer<Double> newAction){
-        this(vaultName,description,null,"",listForTab,newAction);
+
+    public SetDoubleCommand(String vaultName, String description, Supplier<List<String>> listForTab, Consumer<Double> newAction) {
+        this(vaultName, description, null, "", listForTab, newAction);
     }
 }

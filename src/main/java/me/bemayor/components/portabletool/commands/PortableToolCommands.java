@@ -11,15 +11,17 @@ import java.util.List;
 public class PortableToolCommands {
     private SubCommand command;
 
-    public PortableToolCommands(ComponentManagement manager, List<String> itemIdListForTab){
+    public PortableToolCommands(ComponentManagement manager, List<String> itemIdListForTab) {
 
-        command=new SubCommand("portableTool","便携工具组件的指令集",false,
+        command = new SubCommand("portableTool", "便携工具组件的指令集", false,
                 null,
                 new ArrayList<>(Arrays.asList(
-                        new GiveCommand("给与玩家便携工具组件的物品",manager,itemIdListForTab))
+                        new GiveCommand("给与玩家便携工具组件的物品", manager, itemIdListForTab))
                 )
         );
     }
 
-    public SubCommand getCommand(){return command;}
+    public SubCommand getCommand() {
+        return command;
+    }
 }

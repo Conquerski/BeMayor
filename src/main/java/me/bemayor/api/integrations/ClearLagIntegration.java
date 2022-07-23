@@ -13,9 +13,8 @@ import java.util.Iterator;
 /**
  * This handles all integrations with {@link Clearlag}.
  * We don't want it to clear our altar items.
- * 
- * @author TheBusyBiscuit
  *
+ * @author TheBusyBiscuit
  */
 class ClearLagIntegration implements Listener {
 

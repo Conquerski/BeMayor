@@ -18,14 +18,14 @@ public class PortableDustbin extends CustomItemStack {
                 "&f放入物品后关闭界面，物品就会消失", "", LoreBuilder.RIGHT_CLICK_TO_OPEN);
         this.setPlaceable(false);
 
-        this.setUseAction(event->{
+        this.setUseAction(event -> {
             Player p = event.getPlayer();
             p.openInventory(Bukkit.createInventory(null, 9 * 3, ChatColor.DARK_RED + "便携垃圾桶"));
             p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 1);
         });
 
         this.setRecipe(new ShapedRecipe(this.getCloneItemStack())
-                .shape("xxx","y y","yyy")
+                .shape("xxx", "y y", "yyy")
                 .setIngredient('x', Material.IRON_INGOT)
                 .setIngredient('y', Material.COPPER_INGOT)
         );

@@ -17,32 +17,36 @@ public class ComponentManagement {
     private final BeMayor plugin;
 
 
-
     /**
      * ==========================================================================================
      * 在此处添加或删除各个组件的定义
      */
 
-    private final TheOriginalModify theOriginalModify=new TheOriginalModify(this);
-    private final PortableTool portableTool=new PortableTool(this);
-    private final PayToRepair payToRepair=new PayToRepair(this);
-    private final Transition transition=new Transition(this);
+    private final TheOriginalModify theOriginalModify = new TheOriginalModify(this);
+    private final PortableTool portableTool = new PortableTool(this);
+    private final PayToRepair payToRepair = new PayToRepair(this);
+    private final Transition transition = new Transition(this);
     /**
      * ==========================================================================================
      */
 
 
     private static boolean state_isSetup = false;
-    public ComponentManagement(BeMayor plugin) {this.plugin=plugin;}
-    public BeMayor getPlugin() { return plugin; }
+
+    public ComponentManagement(BeMayor plugin) {
+        this.plugin = plugin;
+    }
+
+    public BeMayor getPlugin() {
+        return plugin;
+    }
 
     public void setup() {
-        if(state_isSetup){
+        if (state_isSetup) {
             System.out.println("组件管理器已经启动了！请检查存在的重复启动问题。");
             return;
-        }
-        else{
-            state_isSetup=true;
+        } else {
+            state_isSetup = true;
         }
 
 
@@ -76,12 +80,15 @@ public class ComponentManagement {
     public static void registryItem(CustomItemStack customItem) {
         BeMayor.getApiManager().getCustomItemManager().add(customItem);
     }
+
     public static void registrySubCommand(SubCommand command) {
         BeMayor.getApiManager().getMainCommand().addSubCommand(command);
     }
+
     public static void registryPlayerCommand(PlayerCommand command) {
         BeMayor.getApiManager().getMainCommand().addPlayerCommand(command);
     }
+
     public void registryRecipe(ShapedRecipe recipe) {
         BeMayor.getMyServer().addRecipe(recipe);
     }

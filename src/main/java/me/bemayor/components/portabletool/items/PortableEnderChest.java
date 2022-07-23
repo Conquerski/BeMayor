@@ -9,7 +9,7 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ShapedRecipe;
 
-public class PortableEnderChest  extends CustomItemStack {
+public class PortableEnderChest extends CustomItemStack {
     public PortableEnderChest() {
         super("ENDER_BACKPACK",
                 HeadTexture.ENDER_BACKPACK.getTexture(),
@@ -17,14 +17,14 @@ public class PortableEnderChest  extends CustomItemStack {
                 "&a&o一个便于使用的末影箱", "", LoreBuilder.RIGHT_CLICK_TO_OPEN);
         this.setPlaceable(false);
 
-        this.setUseAction(event->{
+        this.setUseAction(event -> {
             Player p = event.getPlayer();
             p.openInventory(p.getEnderChest());
             p.playSound(p.getEyeLocation(), Sound.BLOCK_ENDER_CHEST_OPEN, 1F, 1F);
         });
 
         this.setRecipe(new ShapedRecipe(this.getCloneItemStack())
-                .shape(" x ","yay","zzz")
+                .shape(" x ", "yay", "zzz")
                 .setIngredient('x', Material.ECHO_SHARD)
                 .setIngredient('y', Material.DIAMOND)
                 .setIngredient('z', Material.SCULK_SHRIEKER)

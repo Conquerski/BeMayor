@@ -17,25 +17,24 @@ public class TownPortal extends CustomItemStack {
         this.setPlaceable(false);
         this.setConsumable(true);
 
-        this.setUseAction(event->{
+        this.setUseAction(event -> {
             Player p = event.getPlayer();
             p.playSound(p.getEyeLocation(), Sound.BLOCK_BEACON_ACTIVATE, 1F, 1F);
 
-            Location l=TransitionUsage.getLocationFromString(event.getItem().getItemMeta().getLore().get(1));
-            Location destination=TransitionUsage.findDestination(l);
-            if(destination!=null){
-                if(TransitionUsage.beaconCheck(p,destination)){
-                    TransitionUsage.transitionDestination(p,destination);
-                }else{
+            Location l = TransitionUsage.getLocationFromString(event.getItem().getItemMeta().getLore().get(1));
+            Location destination = TransitionUsage.findDestination(l);
+            if (destination != null) {
+                if (TransitionUsage.beaconCheck(p, destination)) {
+                    TransitionUsage.transitionDestination(p, destination);
+                } else {
                     p.sendMessage("§c跃迁目的地的传送阵被破坏！");
                     usage.removeDestination(l);
                 }
-            }else{
+            } else {
                 p.sendMessage("§c跃迁目的地的传送阵已被拆除，该卷轴失效！");
             }
         });
     }
-
 
 
 }

@@ -11,17 +11,17 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * This handles all integrations with {@link mcMMO}.
- * 
- * @author TheBusyBiscuit
  *
+ * @author TheBusyBiscuit
  */
 class McMMOIntegration implements Listener {
 
     private final JavaPlugin plugin;
     private final ApiManagement apiManager;
-    McMMOIntegration(JavaPlugin plugin,ApiManagement apiManagement) {
+
+    McMMOIntegration(JavaPlugin plugin, ApiManagement apiManagement) {
         this.plugin = plugin;
-        apiManager=apiManagement;
+        apiManager = apiManagement;
     }
 
     public void register() {
@@ -40,7 +40,7 @@ class McMMOIntegration implements Listener {
 
     private boolean isSalvageable(ItemStack item) {
         String id = apiManager.getCustomItemManager().getIdByItem(item);
-        return id == null ;
+        return id == null;
     }
 
 }

@@ -58,13 +58,13 @@ public class CustomItemStack extends ItemStack {
      */
     private ItemMetaSnapshot itemMetaSnapshot;
     private boolean locked = false;
-    private boolean placeable=true;
-    private boolean consumable=false;
+    private boolean placeable = true;
+    private boolean consumable = false;
     private String texture = null;
     private Consumer<PlayerInteractEvent> useAction;
     private ShapedRecipe recipe;
 
-    public CustomItemStack(String id,  ItemStack item) {
+    public CustomItemStack(String id, ItemStack item) {
         super(item);
 
         Validate.notNull(id, "物品ID不能为空!");
@@ -96,7 +96,7 @@ public class CustomItemStack extends ItemStack {
         this(id, new ItemStack(type), consumer);
     }
 
-    public CustomItemStack(String id,Material type,String name, Consumer<ItemMeta> consumer) {
+    public CustomItemStack(String id, Material type, String name, Consumer<ItemMeta> consumer) {
         this(id, type, meta -> {
             if (name != null) {
                 meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
@@ -106,7 +106,7 @@ public class CustomItemStack extends ItemStack {
         });
     }
 
-    public CustomItemStack(String id, ItemStack item,String name, String... lore) {
+    public CustomItemStack(String id, ItemStack item, String name, String... lore) {
         this(id, item, im -> {
             if (name != null) {
                 im.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
@@ -190,7 +190,7 @@ public class CustomItemStack extends ItemStack {
         this.texture = ItemStackUtils.getTexture(id, texture);
     }
 
-    public CustomItemStack(String id,  String texture, String name, Consumer<ItemMeta> consumer) {
+    public CustomItemStack(String id, String texture, String name, Consumer<ItemMeta> consumer) {
         this(id, ItemStackUtils.getSkull(id, texture), meta -> {
             if (name != null) {
                 meta.setDisplayName(ChatColor.translateAlternateColorCodes('&', name));
@@ -208,7 +208,6 @@ public class CustomItemStack extends ItemStack {
     }
 
 
-
     /**
      * ======================================================================================================
      * ======================================================================================================
@@ -224,43 +223,57 @@ public class CustomItemStack extends ItemStack {
      */
 
     //跟使用动作中跟消耗有关的部分没写，需要加入
-    public Consumer<PlayerInteractEvent> getUseAction(){return useAction;}
-    public void setUseAction(Consumer<PlayerInteractEvent> newUseAction){useAction=newUseAction;}
-    public boolean hasUseAction() { return useAction!=null?true:false; }
-    public void callUseAction(PlayerInteractEvent e){
+    public Consumer<PlayerInteractEvent> getUseAction() {
+        return useAction;
+    }
+
+    public void setUseAction(Consumer<PlayerInteractEvent> newUseAction) {
+        useAction = newUseAction;
+    }
+
+    public boolean hasUseAction() {
+        return useAction != null ? true : false;
+    }
+
+    public void callUseAction(PlayerInteractEvent e) {
         try {
             useAction.accept(e);
         } catch (Exception | LinkageError x) {
-            String errorText=this.id+"的使用动作useAction代码有误！";
+            String errorText = this.id + "的使用动作useAction代码有误！";
             e.getPlayer().sendMessage(errorText);
             System.out.println(errorText);
         }
     }
-    public boolean isUseActionOfBlock() { return hasUseAction()?placeable:false; }
 
+    public boolean isUseActionOfBlock() {
+        return hasUseAction() ? placeable : false;
+    }
 
 
     public ItemStack getCloneItemStack() {
-        return ((ItemStack)this).clone();
+        return ((ItemStack) this).clone();
     }
+
     public ItemStack getCloneItemStack(int amount) {
-        ItemStack is=getCloneItemStack();
+        ItemStack is = getCloneItemStack();
         is.setAmount(amount);
         return is;
     }
+
     public <T extends ItemStack> T getCloneItemStack(Class<T> type) {
         ItemStack item = getCloneItemStack();
         return type.isInstance(item) ? type.cast(item) : null;
     }
-    public <T extends ItemStack> T getCloneItemStack(Class<T> type,int amount) {
+
+    public <T extends ItemStack> T getCloneItemStack(Class<T> type, int amount) {
         ItemStack item = getCloneItemStack(amount);
         return type.isInstance(item) ? type.cast(item) : null;
     }
 
 
     public String getName() {
-        String name=getDisplayName();
-        if(name!=null || !name.isEmpty()){
+        String name = getDisplayName();
+        if (name != null || !name.isEmpty()) {
             return name;
         }
         return ItemUtils.getItemName(this);
@@ -279,16 +292,18 @@ public class CustomItemStack extends ItemStack {
 
     public void setPlaceable(boolean isPlaceable) {
         validate();
-        placeable=isPlaceable;
+        placeable = isPlaceable;
     }
+
     public boolean isPlaceable() {
         return placeable;
     }
 
     public void setConsumable(boolean isConsumable) {
         validate();
-        consumable=isConsumable;
+        consumable = isConsumable;
     }
+
     public boolean isConsumable() {
         return consumable;
     }
@@ -328,12 +343,18 @@ public class CustomItemStack extends ItemStack {
         locked = true;
     }
 
-    public ShapedRecipe getRecipe() { return recipe; }
-    public void setRecipe(ShapedRecipe newRecipe) { recipe=newRecipe; }
+    public ShapedRecipe getRecipe() {
+        return recipe;
+    }
+
+    public void setRecipe(ShapedRecipe newRecipe) {
+        recipe = newRecipe;
+    }
 
     public void setSkullTexture(String newSkullTexture) {
-        texture=newSkullTexture;
+        texture = newSkullTexture;
     }
+
     public Optional<String> getSkullTexture() {
         return Optional.ofNullable(texture);
     }
@@ -349,7 +370,7 @@ public class CustomItemStack extends ItemStack {
 
     @Override
     public CustomItemStack clone() {
-        CustomItemStack newCis=new CustomItemStack(id, this);
+        CustomItemStack newCis = new CustomItemStack(id, this);
         newCis.setPlaceable(placeable);
         newCis.setConsumable(consumable);
         newCis.setSkullTexture(texture);

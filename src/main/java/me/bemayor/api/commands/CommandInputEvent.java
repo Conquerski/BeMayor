@@ -9,11 +9,16 @@ public class CommandInputEvent {
     private final CommandSender sender;
     private final List<String> texts;
 
-    public CommandInputEvent(CommandSender sender,List<String> texts){
-        this.sender=sender;
-        this.texts=texts;
+    public CommandInputEvent(CommandSender sender, List<String> texts) {
+        this.sender = sender;
+        this.texts = texts;
     }
 
-    public CommandSender getCommandSender(){return sender;}
-    public List<String> getTexts(){return texts;}
+    public CommandSender getCommandSender() {
+        return sender;
+    }
+
+    public List<String> getTexts() {
+        return texts;
+    }
 }

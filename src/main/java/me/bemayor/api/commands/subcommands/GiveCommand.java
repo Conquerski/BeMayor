@@ -20,11 +20,11 @@ public class GiveCommand extends SubCommand {
     private static final String PLACEHOLDER_ITEM = "%item%";
     private static final String PLACEHOLDER_AMOUNT = "%amount%";
 
-    public GiveCommand(String description, ComponentManagement manager,List<String> itemIdListForTab){
-        super("give",description+",格式为：{物品ID}_{物品数量(可缺省)}_{收货人名字(可缺省)}",false);
-        this.setAction(e->{
-            List<String> texts=e.getTexts();
-            if(texts!=null && texts.size()>0) {
+    public GiveCommand(String description, ComponentManagement manager, List<String> itemIdListForTab) {
+        super("give", description + ",格式为：{物品ID}_{物品数量(可缺省)}_{收货人名字(可缺省)}", false);
+        this.setAction(e -> {
+            List<String> texts = e.getTexts();
+            if (texts != null && texts.size() > 0) {
                 CommandSender sender = e.getCommandSender();
                 ApiManagement apiManager = manager.getPlugin().getApiManager();
 
@@ -32,7 +32,7 @@ public class GiveCommand extends SubCommand {
                 Player player;
                 if (texts.size() > 2) {
                     //如果有写给与的玩家，则判断玩家在不在
-                    String playerName=texts.get(2);
+                    String playerName = texts.get(2);
                     Optional<Player> p = PlayerList.findByName(playerName);
                     if (!p.isPresent()) {
                         apiManager.getChatMessages().sendMessage(sender, "messages.not-online", true, msg -> msg.replace(PLACEHOLDER_PLAYER, playerName));
@@ -63,14 +63,14 @@ public class GiveCommand extends SubCommand {
             }
         });
 
-        this.setTabFind(e->{
-            List<String> texts=e.getTexts();
-            if(texts!=null && texts.size()>0 &&  texts.size()<4) {
-                if(texts.size()==1){
+        this.setTabFind(e -> {
+            List<String> texts = e.getTexts();
+            if (texts != null && texts.size() > 0 && texts.size() < 4) {
+                if (texts.size() == 1) {
                     return itemIdListForTab;
-                }else if(texts.size()==2){
+                } else if (texts.size() == 2) {
                     return ChatUtils.amountListForTab;
-                }else if(texts.size()==3){
+                } else if (texts.size() == 3) {
                     return PlayerUtils.getPlayerNameListOnline();
                 }
             }
@@ -83,11 +83,14 @@ public class GiveCommand extends SubCommand {
         if (CommonPatterns.NUMERIC.matcher(strAmount).matches()) {
             amount = Integer.parseInt(strAmount);
         }
-        if(amount<1){amount = 1;}
+        if (amount < 1) {
+            amount = 1;
+        }
         return amount;
     }
-    private void giveItem(CommandSender sender, Player toPlayer, String id,int amount, ApiManagement apiManager) {
-        CustomItemStack cItem=apiManager.getCustomItemManager().getTemplateById(id);
+
+    private void giveItem(CommandSender sender, Player toPlayer, String id, int amount, ApiManagement apiManager) {
+        CustomItemStack cItem = apiManager.getCustomItemManager().getTemplateById(id);
         apiManager.getChatMessages().sendMessage(toPlayer, "messages.given-item", true, msg -> msg.replace(PLACEHOLDER_ITEM, cItem.getName()).replace(PLACEHOLDER_AMOUNT, String.valueOf(amount)));
         Map<Integer, ItemStack> excess = toPlayer.getInventory().addItem(cItem.getCloneItemStack(amount));
         if (apiManager.getApiConfig().getBoolean("options.drop-excess-sf-give-items") && !excess.isEmpty()) {

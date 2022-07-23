@@ -5,6 +5,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class ApiConfig extends Config {
 
-    public ApiConfig(JavaPlugin plugin) { super(plugin, ApiManagement.APICONFIG_YML); }
+    public ApiConfig(JavaPlugin plugin) {
+        super(plugin, ApiManagement.APICONFIG_YML);
+    }
 
 }
