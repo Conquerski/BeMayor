@@ -1,5 +1,6 @@
 package me.bemayor.components.portabletool;
 
+import me.bemayor.BeMayor;
 import me.bemayor.api.customitem.CustomItemStack;
 import me.bemayor.components.ComponentManagement;
 import me.bemayor.components.ComponentMember;
@@ -7,12 +8,13 @@ import me.bemayor.components.portabletool.commands.PortableToolCommands;
 import me.bemayor.components.portabletool.items.PortableCrafter;
 import me.bemayor.components.portabletool.items.PortableDustbin;
 import me.bemayor.components.portabletool.items.PortableEnderChest;
+import org.bukkit.NamespacedKey;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PortableTool extends ComponentMember {
-
+    public static final NamespacedKey namespacedKey=new NamespacedKey(BeMayor.getPlugin(BeMayor.class),"portabletool");
     public static final List<String> itemIdList = new ArrayList<>();//本组件的自定义物品ID列表
 
 

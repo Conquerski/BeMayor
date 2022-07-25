@@ -1,6 +1,7 @@
 package me.bemayor.components.transition.items;
 
 import me.bemayor.api.customitem.CustomItemStack;
+import me.bemayor.components.transition.Transition;
 import me.bemayor.components.transition.TransitionUsage;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -26,7 +27,7 @@ public class TransportCore extends CustomItemStack {
             }
         });
 
-        this.setRecipe(new ShapedRecipe(this.getCloneItemStack())
+        this.setRecipe(new ShapedRecipe(Transition.namespacedKey,this.getCloneItemStack())
                 .shape("axa", "byb", "czc")
                 .setIngredient('x', Material.BEACON)
                 .setIngredient('y', Material.CONDUIT)

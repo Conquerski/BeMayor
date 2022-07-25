@@ -3,6 +3,7 @@ package me.bemayor.components.portabletool.items;
 import me.bemayor.api.common.LoreBuilder;
 import me.bemayor.api.customitem.CustomItemStack;
 import me.bemayor.components.common.HeadTexture;
+import me.bemayor.components.portabletool.PortableTool;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -24,7 +25,7 @@ public class PortableDustbin extends CustomItemStack {
             p.playSound(p.getLocation(), Sound.BLOCK_ANVIL_LAND, 1, 1);
         });
 
-        this.setRecipe(new ShapedRecipe(this.getCloneItemStack())
+        this.setRecipe(new ShapedRecipe(PortableTool.namespacedKey,this.getCloneItemStack())
                 .shape("xxx", "y y", "yyy")
                 .setIngredient('x', Material.IRON_INGOT)
                 .setIngredient('y', Material.COPPER_INGOT)

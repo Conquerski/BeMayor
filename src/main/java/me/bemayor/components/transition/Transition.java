@@ -1,16 +1,19 @@
 package me.bemayor.components.transition;
 
+import me.bemayor.BeMayor;
 import me.bemayor.api.customitem.CustomItemStack;
 import me.bemayor.components.ComponentManagement;
 import me.bemayor.components.ComponentMember;
 import me.bemayor.components.transition.commands.TransitionCommands;
 import me.bemayor.components.transition.items.TownPortal;
 import me.bemayor.components.transition.items.TransportCore;
+import org.bukkit.NamespacedKey;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Transition extends ComponentMember {
+    public static final NamespacedKey namespacedKey=new NamespacedKey(BeMayor.getPlugin(BeMayor.class),"transition");
     public static final List<String> itemIdList = new ArrayList<>();//本组件的自定义物品ID列表
 
     //跃迁算法定义

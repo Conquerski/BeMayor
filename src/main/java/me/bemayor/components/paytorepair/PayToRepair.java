@@ -1,6 +1,7 @@
 package me.bemayor.components.paytorepair;
 
 import io.github.bakedlibs.dough.config.Config;
+import me.bemayor.BeMayor;
 import me.bemayor.api.common.ConfigUtils;
 import me.bemayor.api.customitem.CustomItemStack;
 import me.bemayor.components.ComponentManagement;
@@ -10,6 +11,7 @@ import me.bemayor.components.paytorepair.items.PayAnvil;
 import me.bemayor.components.paytorepair.items.PayAnvilGui;
 import me.bemayor.components.paytorepair.items.PortablePayAnvil;
 import me.bemayor.components.theoriginalmodify.commands.TheOriginalModifyCommands;
+import org.bukkit.NamespacedKey;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -18,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class PayToRepair extends ComponentMember {
-
+    public static final NamespacedKey namespacedKey=new NamespacedKey(BeMayor.getPlugin(BeMayor.class),"paytorepair");
     public static final List<String> itemIdList = new ArrayList<>();//本组件的自定义物品ID列表
 
     //修理算法定义
