@@ -27,11 +27,11 @@ public class TransportCore extends CustomItemStack {
         });
 
         this.setRecipe(new ShapedRecipe(this.getCloneItemStack())
-                .shape("axa", "byb", "zcz")
+                .shape("axa", "byb", "czc")
                 .setIngredient('x', Material.BEACON)
                 .setIngredient('y', Material.CONDUIT)
-                .setIngredient('z', Material.END_CRYSTAL)
-                .setIngredient('a', Material.DISPENSER)
+                .setIngredient('z', Material.DISPENSER)
+                .setIngredient('a', Material.DAYLIGHT_DETECTOR)
                 .setIngredient('b', Material.NETHERITE_INGOT)
                 .setIngredient('c', Material.END_CRYSTAL)
         );

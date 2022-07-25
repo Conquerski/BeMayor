@@ -39,6 +39,7 @@ public class Transition extends ComponentMember {
 
         itemIdList.add(TRANSPORT_CORE.getId());
         ComponentManagement.registryItem(TRANSPORT_CORE);
+        manager.registryRecipe(TRANSPORT_CORE.getRecipe());
 
 
         //指令注册

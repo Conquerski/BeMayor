@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.stream.Stream;
 
 import me.bemayor.api.common.ItemStackUtils;
 import org.bukkit.Material;
@@ -25,6 +26,7 @@ public class WorkbenchGui extends CustomGui {
     private Consumer<InventoryClickEvent> inputChangeAction;
     private Consumer<InventoryClickEvent> outputGetAction;
     private Consumer<InventoryCloseEvent> guiCloseAction;
+    private List<WorkbenchRecipeItem> recipeList;
 
     public WorkbenchGui(String guiTitle, String guiDescription, String closeText, int inputNum, int outputNum, int buttonsNum) {
         super(guiTitle, guiDescription, inputNum, outputNum, buttonsNum);
@@ -45,7 +47,7 @@ public class WorkbenchGui extends CustomGui {
 
         //按钮
         if (buttons == null || buttons.size() == 0) {
-            buttons = new ArrayList<GuiButton>(Arrays.asList(getDefaultButton()));
+            buttons = new ArrayList<>(Arrays.asList(getDefaultButton()));
         }
         drawButtons();
     }
@@ -132,7 +134,7 @@ public class WorkbenchGui extends CustomGui {
             guiCloseAction.accept(event);//触发输出框拿取事件
         }
         Player p = (Player) event.getPlayer();
-        List<ItemStack> list = new ArrayList<ItemStack>();
+        List<ItemStack> list = new ArrayList<>();
         if (this.hasInputItem()) {
             list.addAll(this.getInputItems());
         } //获取输入框所有物品
@@ -166,6 +168,40 @@ public class WorkbenchGui extends CustomGui {
                     is.setAmount(0);
                 }
             }
+        }
+    }
+
+    public void addRecipeItem(WorkbenchRecipeItem recipeItem){
+        if(recipeList==null){
+            recipeList=new ArrayList<>();
+        }else{
+            recipeList.add(recipeItem);
+        }
+    }
+    public void addRecipeItem(Material recipeMaterial,boolean isOriginal){
+        addRecipeItem(new WorkbenchRecipeItem(recipeMaterial,isOriginal));
+    }
+    public void addRecipeItem(Material recipeMaterial){
+        addRecipeItem(new WorkbenchRecipeItem(recipeMaterial,false));
+    }
+    public boolean checkInputItem() {
+        if (hasInputItem()) {
+            if (recipeList!=null && recipeList.size() > 0) {
+                boolean b = true;
+                Stream<ItemStack> st = getInputItems().stream();
+                for (WorkbenchRecipeItem recipeItem : recipeList) {
+                    b &= st.anyMatch(is -> is.getType() == recipeItem.recipeMaterial && (recipeItem.isOriginal ?
+                            !is.getItemMeta().hasDisplayName() : true));
+                    if (!b) {
+                        break;
+                    }
+                }
+                return b;
+            }else{
+                return true;
+            }
+        }else{
+            return false;
         }
     }
 

@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class TransportCoreGui {
 
@@ -36,6 +37,9 @@ public class TransportCoreGui {
             Player p = (Player) event.getPlayer();
             p.playSound(p.getEyeLocation(), Sound.BLOCK_SHULKER_BOX_CLOSE, 1F, 1F);
         });
+
+        myGui.addRecipeItem(Material.ENDER_PEARL);
+        myGui.addRecipeItem(Material.PAPER, true);
     }
 
     public void open(Player player, Location destination) {
@@ -55,25 +59,25 @@ public class TransportCoreGui {
             playerLevel = playerLevel + 1;
         }
         if (playerLevel > 0) {
-            if (inputItemCheck()) {
+            if (myGui.checkInputItem()) {
                 player.setLevel(playerLevel - 1);
                 ItemStack outcome = BeMayor.getApiManager().getCustomItemManager().getTemplateById("TOWN_PORTAL").getCloneItemStack();
                 TransitionUsage.setLocationToItem(outcome, TransitionUsage.getStringFromLocation(destination));
                 myGui.setInputToOutput(outcome, player);
-                ConfirmLore = new ArrayList<String>(Arrays.asList(
+                ConfirmLore = new ArrayList<>(Arrays.asList(
                         "=========",
                         "§f卷轴已合成完成"
                 ));
                 player.playSound(player.getEyeLocation(), Sound.ITEM_BOOK_PUT, 1F, 1F);
             } else {
-                ConfirmLore = new ArrayList<String>(Arrays.asList(
+                ConfirmLore = new ArrayList<>(Arrays.asList(
                         "=========",
                         "§f请将末影珍珠和纸张放入左侧"
                 ));
                 player.sendMessage("§6[跃迁核心] §d请将末影珍珠和纸张放入左侧的红色栏位。");
             }
         } else {
-            ConfirmLore = new ArrayList<String>(Arrays.asList(
+            ConfirmLore = new ArrayList<>(Arrays.asList(
                     "=========",
                     "§f您的等级不足"
             ));
@@ -84,26 +88,4 @@ public class TransportCoreGui {
         event.setCancelled(true);
     }
 
-    private boolean inputItemCheck() {
-        if (myGui.hasInputItem()) {
-            boolean b1 = false;
-            boolean b2 = false;
-            for (ItemStack is : myGui.getInputItems()) {
-                if (is.getType() == Material.ENDER_PEARL) {
-                    b1 = true;
-                    continue;
-                }
-                if (is.getType() == Material.PAPER) {
-                    b2 = true;
-                }
-            }
-            if (b1 && b2) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            return false;
-        }
-    }
 }
