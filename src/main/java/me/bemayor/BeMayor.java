@@ -2,8 +2,11 @@ package me.bemayor;
 
 import me.bemayor.api.ApiManagement;
 import me.bemayor.components.ComponentManagement;
+import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.logging.Level;
 
 /*
 主旨：该插件旨在多人游戏中增强原版的多元游戏性。
@@ -64,27 +67,28 @@ public final class BeMayor extends JavaPlugin {
     @Override
     public void onEnable() {
         // Plugin startup logic
-        System.out.println("BeMayor插件正在加载...");
+        getLogger().log(Level.INFO, "BeMayor插件正在加载...");
 
         setInstance(this);//本插件主类的单例化
         apiManager = new ApiManagement();//创建框架
         componentManager = new ComponentManagement(instance);//创建各个组件
-        System.out.println("所有组件已创建");
+        getLogger().log(Level.INFO, "所有组件已创建");
 
         componentManager.setup();//启动各个组件
-        System.out.println("所有组件已启动");
+        getLogger().log(Level.INFO, "所有组件已启动");
         apiManager.getMainCommand().register();
-        System.out.println("指令集已注册");
+        getLogger().log(Level.INFO, "指令集已注册");
 
         System.out.println("BeMayor插件已加载。");
+        getLogger().log(Level.INFO, "BeMayor插件已加载。");
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
-        System.out.println("BeMayor插件正在关闭...");
+        getLogger().log(Level.INFO, "BeMayor插件正在关闭...");
 
-        System.out.println("BeMayor插件已关闭。");
+        getLogger().log(Level.INFO, "BeMayor插件已关闭。");
     }
 
 
