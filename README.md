@@ -30,7 +30,7 @@
   - LoreBuilder
   - PlayerUtils
   - ConfigUtils（用于保证配置文件的存在）
-- 以上在api.common目录中出
+- 以上在api.common目录中
 
 ## 许可证
 
