@@ -12,7 +12,7 @@ import java.util.logging.Level;
 主旨：该插件旨在多人游戏中增强原版的多元游戏性。
 组件：原版修改、付费修理、便携工具、钻石银行
 基础：指令、自定义物品、异常信息、配置文件
-依赖：
+依赖：CoreProtect、Vault
  */
 public final class BeMayor extends JavaPlugin {
 
